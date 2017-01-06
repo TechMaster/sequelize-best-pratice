@@ -4,7 +4,7 @@
   "description": "Example of sequelize best practice",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [
     "sequelize"
@@ -12,9 +12,16 @@
   "author": "Trịnh Minh Cường",
   "license": "MIT",
   "dependencies": {
+    "bluebird": "^3.4.7",
     "date-fns": "^1.22.0",
+    "lodash": "^4.17.4",
     "pg": "^6.1.2",
     "pg-hstore": "^2.3.2",
+    "pg-structure": "^3.5.10",
     "sequelize": "^3.28.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0"
   }
 }

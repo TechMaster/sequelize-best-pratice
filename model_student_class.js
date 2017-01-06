@@ -2,7 +2,7 @@
  * Created by techmaster on 1/5/17.
  */
 const Sequelize = require('sequelize');
-const db = require('./config');
+const db = require('./db');
 
 const Student = db.define('student', {
   id: {
@@ -15,7 +15,7 @@ const Student = db.define('student', {
     unique: true  //Tạo unique constrain
   }
 },{
-  schema: 'cms',
+  schema: db.options.schema,
   timestamps: false,
   paranoid: true,
   underscored: true,
@@ -34,7 +34,7 @@ const Class = db.define('class', {
     unique: true  //Tạo unique constrain
   }
 },{
-  schema: 'cms',
+  schema: db.options.schema,
   timestamps: false,
   paranoid: true,
   underscored: true,

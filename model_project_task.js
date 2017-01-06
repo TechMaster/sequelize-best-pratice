@@ -2,8 +2,7 @@
  * Created by techmaster on 1/5/17.
  */
 const Sequelize = require('sequelize');
-const db = require('./config');
-
+const db = require('./db');
 
 const Project = db.define('project', {
   id: {type: Sequelize.BIGINT, primaryKey: true, defaultValue: Sequelize.fn('util.id_generator')},
@@ -15,8 +14,8 @@ const Project = db.define('project', {
   description: Sequelize.TEXT,
   status: Sequelize.ENUM('create', 'pending', 'processed', 'rejected'),
   tags: Sequelize.ARRAY(Sequelize.TEXT),
-},{
-  schema: 'cms',
+}, {
+  schema: db.options.schema,  //Nếu không có thuộc tính này mặc định sẽ dùng public schema
   timestamps: false,
   paranoid: true,
   underscored: true,
@@ -24,15 +23,14 @@ const Project = db.define('project', {
 });
 
 
-
 const Task = db.define('task', {
   id: {type: Sequelize.BIGINT, primaryKey: true, defaultValue: Sequelize.fn('util.id_generator')},
   title: Sequelize.TEXT,
   description: Sequelize.TEXT,
   deadline: Sequelize.DATE,
-  is_done: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false},
-},{
-  schema: 'cms',
+  is_done: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false},
+}, {
+  schema: db.options.schema,
   timestamps: false,
   paranoid: true,
   underscored: true,
@@ -41,7 +39,14 @@ const Task = db.define('task', {
 
 //Define relationships
 Project.hasOne(Task);
-Task.belongsTo(Project);  //tạo foreign key project_id ở Task
+
+Task.belongsTo(Project, {
+  foreignKey: {     //Mặc định foreign key là Nullable
+    name: 'projectid',  //Nếu muốn bắt buộc foreign_key not null thì phải đổi tên foreign key mặc định
+    allowNull: false
+  },
+  onDelete: 'CASCADE' //Nếu xóa project thì xóa cả Task
+});  //tạo foreign key project_id ở Task
 
 
 module.exports = {Project, Task};

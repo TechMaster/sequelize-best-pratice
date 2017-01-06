@@ -1,12 +1,9 @@
-const Sequelize = require('sequelize');
-
-module.exports =  new Sequelize('payroll', 'postgres', 'abc', {
-    host: 'payroll',
-    dialect: 'postgres',
-   // searchPath: 'cms',  //Set to schema named cms
-    pool: {
-      max: 5,
-      min: 0,
-      idle: 10000
-    }
-});
+module.exports = {
+  host: 'payroll',
+  database: 'payroll',
+  user: 'postgres',
+  port: 5432,
+  password: 'abc',
+  dialect: 'postgres',
+  schema: 'cms'        //Bổ xung thêm một thuộc tính schema của Postgresql để chỉ rõ sẽ làm việc trên Schema nào
+};

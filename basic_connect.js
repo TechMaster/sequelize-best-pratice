@@ -1,9 +1,5 @@
-/**
- * Created by techmaster on 1/5/17.
- */
-
-const sequelize = require('./config');
-sequelize.authenticate()
+const db = require('./db');
+db.authenticate()
   .then(function (err) {
     console.log('Connection has been established successfully.');
   })
