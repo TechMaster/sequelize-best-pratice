@@ -1,5 +1,5 @@
-const db = require('./db');
-db.authenticate()
+const db = require('./models');
+db.sequelize.authenticate()
   .then(function (err) {
     console.log('Connection has been established successfully.');
   })

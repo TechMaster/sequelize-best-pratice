@@ -4,11 +4,12 @@
 const chai = require('chai');
 const should = chai.should();
 const expect = chai.expect;
-const db = require('../db');
+const db = require('../models');
+
 const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 
-const authenticate = db.authenticate()
+const authenticate = db.sequelize.authenticate()
   .then(err => {
     return 'success';
   })

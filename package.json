@@ -4,7 +4,7 @@
   "description": "Example of sequelize best practice",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha -S"
   },
   "keywords": [
     "sequelize"
@@ -18,7 +18,8 @@
     "pg": "^6.1.2",
     "pg-hstore": "^2.3.2",
     "pg-structure": "^3.5.10",
-    "sequelize": "^3.28.0"
+    "sequelize": "^3.28.0",
+    "sequelize-cli": "^2.5.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
