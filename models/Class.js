@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const Student = sequelize.define('Student', {
+  const Class = sequelize.define('Class', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -15,15 +15,13 @@ module.exports = function (sequelize, DataTypes) {
     timestamps: false,
     paranoid: true,
     underscored: true,
-    freezeTableName: true,
-    tableName: 'student',
+    tableName: 'class',
 
     classMethods: {
       associate: function (models) {
-        Student.Classes = Student.belongsToMany(models.Class, {through: 'student_class'});  //tạo foreign key project_id ở Task
+        Class.Students = Class.belongsToMany(models.Student, {through: 'student_class'});
       }
     }
   });
-
-  return Student;
+  return Class;
 };
