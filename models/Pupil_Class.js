@@ -1,3 +1,6 @@
+/*
+Bảng trung gian đững giữa Pupil và Class
+ */
 module.exports = function (sequelize, DataTypes) {
   const Pupil_Class = sequelize.define('Pupil_Class', {
     id: {                     //Thêm primary key ở bảng trung gian

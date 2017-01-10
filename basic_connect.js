@@ -1,6 +1,6 @@
 const db = require('./models');
 db.sequelize.authenticate()
-  .then(function (err) {
+  .then(function () {
     console.log('Connection has been established successfully.');
   })
   .catch(function (err) {
