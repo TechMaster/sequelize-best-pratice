@@ -13,11 +13,11 @@ chai.use(chaiAsPromised);
 
 
 //Synchronize from model to database schema
-const sync_promise = db.sequelize.sync({force: true}).then(_ => {
+/*const sync_promise = db.sequelize.sync({force: true}).then(_ => {
   return true;
 }).catch(_ => {
   return false;
-});
+});*/
 
 const config = db.sequelize.config;
 
@@ -35,9 +35,18 @@ const check_table_promise = pgStructure({
 });
 
 describe('Synchronize from model to database schema', function () {
-  it('It should sync successfully', function () {
-    return sync_promise.should.eventually.equal(true);
+
+  before (function (done) {
+    db.sequelize.sync({force: false}).then(() => {
+      done();
+    }).catch(() => {
+      fail();
+    });
   });
+
+ /* it('It should sync successfully', function () {
+    return sync_promise.should.eventually.equal(true);
+  });*/
 
   it('Database after sync should have table project, task, student, class, student_class', function () {
     return check_table_promise.should.eventually.equal(0);

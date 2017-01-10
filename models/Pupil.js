@@ -1,5 +1,10 @@
+/*
+ Quan hệ giữa Class và Pupil là nhiều nhiều như Class và Student.
+
+ Ở đây chúng ta định rõ bảng trung gian Intersection Table Pupil_Class
+ */
 module.exports = function (sequelize, DataTypes) {
-  const Class = sequelize.define('Class', {
+  const Pupil = sequelize.define('Pupil', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -15,14 +20,9 @@ module.exports = function (sequelize, DataTypes) {
     timestamps: false,
     paranoid: true,
     underscored: true,
-    tableName: 'class',
-
-    classMethods: {
-      associate: function (models) {
-        Class.Students = Class.belongsToMany(models.Student, {through: 'student_class'});
-        //Class.Pupils = Class.belongsToMany(models.Pupil, {through: 'pupil_class'});
-      }
-    }
+    freezeTableName: true,
+    tableName: 'pupil',
   });
-  return Class;
+
+  return Pupil;
 };

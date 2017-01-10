@@ -7,7 +7,7 @@ const db = require('./models');
 
 db.Project.findOne({
   where: {title: {$like: 'Space X%'}},
-  include: [db.Task]
+  include: [db.Task]  //Include Task trong query, một dạng eager loading
 }).then(project => {
     if (project) {
       console.log("Demo 1");

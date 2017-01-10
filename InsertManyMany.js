@@ -1,3 +1,6 @@
+/*
+Trường hợp này, bảng Intersection student_class được tạo ra mà không cần định nghĩa model
+ */
 const db = require('./models');
 const Promise = require('bluebird');
 

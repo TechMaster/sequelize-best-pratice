@@ -1,3 +1,6 @@
+/*
+Project, Task quan hệ một nhiều
+ */
 const datefns = require('date-fns');  //Thư viện xử lý thời gian
 const db = require('./models');
 
@@ -7,7 +10,7 @@ db.Project
     description: 'R&D Project',
     status: 'processed',
     tags: ['iOS', 'CoreData'],
-    Tasks: [
+    Tasks: [   //Tạo các Task ngay bên trong Project
       {
         title: 'Coding UX',
         description: 'Design UX of app',
@@ -50,14 +53,14 @@ db.Project
           description: "This is task 1",
           deadline: datefns.addDays(new Date(), 1),
           is_done: false,
-          project_id: project.id
+          project_id: project.id   //Set foreign key
         },
         {
           title: "Task 2",
           description: "This is task 2",
           deadline: datefns.addDays(new Date(), 2),
           is_done: true,
-          project_id: project.id
+          project_id: project.id   //Set foreign key
         },
       ]).then((tasks) => {
           tasks.forEach(task => {

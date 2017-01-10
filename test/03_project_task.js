@@ -36,6 +36,9 @@ const project_promise = db.Project
   }, {
     include: [db.Task]
   }).then(project => {
+    project.Tasks.forEach(task => {
+      console.log(task.title);
+    });
     return project.Tasks.length;
   })
   .catch(function (error) {
@@ -46,7 +49,9 @@ const project_promise = db.Project
  Vấn đề các lệnh kiểm thử chạy bất đồng bộ
  */
 describe('Insert a Project', function () {
+  this.timeout(1000);
   it('Project should have 3 tasks', function () {
+
     return project_promise.should.eventually.equal(3);
   });
 });
